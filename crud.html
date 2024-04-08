@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empresas</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    table, th, td {
+        border: 1px solid #ccc;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #333;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .add-button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 20px;
+        cursor: pointer;
+    }
+    .edit-button, .delete-button {
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<h2>Restaurantes</h2>
+
+<table id="myTable">
+    <tr>
+        <th>Restaurantes</th>
+        <th>Ações</th>
+    </tr>
+    <!-- As linhas da tabela serão adicionadas dinamicamente aqui -->
+</table>
+
+<button class="add-button" onclick="addRow()">Adicionar restaurante</button>
+
+<script>
+    function addRow() {
+        var table = document.getElementById("myTable");
+        var row = table.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var string = prompt("Digite o nome do restaurante:");
+        cell1.innerHTML = string;
+        cell2.innerHTML = '<span class="edit-button" onclick="editRow(this)">Editar</span> | <span class="delete-button" onclick="deleteRow(this)">Deletar</span>';
+    }
+
+    function editRow(button) {
+        var row = button.parentNode.parentNode;
+        var string = prompt("Editar string:", row.cells[0].innerHTML);
+        row.cells[0].innerHTML = string;
+    }
+
+    function deleteRow(button) {
+        var row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
+</script>
+
+</body>
+</html>
